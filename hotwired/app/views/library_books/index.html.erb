@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Library books</h1>
+
+<div class="cores" style="text-align:center; color:red">
+  <%= turbo_stream_from "library_books" %>
+</div>
+
+<%= turbo_frame_tag "library_books" do %>
+  <%= render @library_books %>
+<% end %>
+
+<%= link_to "New library book", new_library_book_path %>
