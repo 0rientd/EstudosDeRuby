@@ -8,6 +8,7 @@ class LibraryBooksController < ApplicationController
 
   # GET /library_books/1 or /library_books/1.json
   def show
+    redirect_to '/index'
   end
 
   # GET /library_books/new
@@ -25,7 +26,7 @@ class LibraryBooksController < ApplicationController
 
     respond_to do |format|
       if @library_book.save
-        format.html { redirect_to library_book_url(@library_book), notice: "Library book was successfully created." }
+        format.html { redirect_to library_book_url(@library_book), notice: 'Library book was successfully created.' }
         format.json { render :show, status: :created, location: @library_book }
       else
         format.html { render :new, status: :unprocessable_entity }

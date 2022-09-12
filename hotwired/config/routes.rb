@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   
   root "library_books#index"
+
+  get '/simple_form' => 'library_books#simple_form'
 end

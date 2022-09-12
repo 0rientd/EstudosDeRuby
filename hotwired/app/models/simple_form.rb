@@ -1,0 +1,3 @@
+class SimpleForm < ApplicationRecord
+  
+end
