@@ -7184,3 +7184,105 @@ Started GET "/cable/" [WebSocket] for ::1 at 2022-09-12 18:39:56 -0300
 Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
 Turbo::StreamsChannel is transmitting the subscription confirmation
 Turbo::StreamsChannel is streaming from library_books
+Started GET "/" for ::1 at 2022-09-13 09:46:42 -0300
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LibraryBooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering library_books/index.html.erb within layouts/application
+  [1m[36mLibraryBook Load (0.5ms)[0m  [1m[34mSELECT "library_books".* FROM "library_books"[0m
+  ↳ app/views/library_books/index.html.erb:10
+  Rendered collection of library_books/_library_book.html.erb [2 times] (Duration: 2.4ms | Allocations: 485)
+  Rendered library_books/index.html.erb within layouts/application (Duration: 25.8ms | Allocations: 8037)
+  Rendered library_books/_simple_form.html.erb (Duration: 123.0ms | Allocations: 16281)
+  Rendered layout layouts/application.html.erb (Duration: 239.7ms | Allocations: 59352)
+Completed 200 OK in 262ms (Views: 245.2ms | ActiveRecord: 1.0ms | Allocations: 63623)
+
+
+Started GET "/cable" for ::1 at 2022-09-13 09:46:42 -0300
+Started GET "/cable/" [WebSocket] for ::1 at 2022-09-13 09:46:42 -0300
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Turbo::StreamsChannel is transmitting the subscription confirmation
+Turbo::StreamsChannel is streaming from library_books
+Started POST "/library_books" for ::1 at 2022-09-13 09:46:50 -0300
+Processing by LibraryBooksController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "library_book"=>{"title"=>"Ariel", "status"=>""}, "commit"=>"Create Library book"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/library_books_controller.rb:28:in `block in create'
+  [1m[36mLibraryBook Create (1.2ms)[0m  [1m[32mINSERT INTO "library_books" ("title", "status", "description", "status_dat", "internal_info", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Ariel"], ["status", ""], ["description", nil], ["status_dat", nil], ["internal_info", nil], ["created_at", "2022-09-13 12:46:50.254564"], ["updated_at", "2022-09-13 12:46:50.254564"]]
+  ↳ app/controllers/library_books_controller.rb:28:in `block in create'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/library_books_controller.rb:28:in `block in create'
+[ActiveJob] Enqueued Turbo::Streams::ActionBroadcastJob (Job ID: a3efe0b8-b77d-476d-a218-0067165eaf20) to Async(default) with arguments: "library_books", {:action=>:append, :target=>:library_books, :targets=>nil, :locals=>{:library_book=>#<GlobalID:0x00000001113d9de0 @uri=#<URI::GID gid://hotwired/LibraryBook/37>>}, :partial=>"library_books/library_book"}
+Redirected to http://localhost:3000/library_books/37
+Completed 302 Found in 13ms (ActiveRecord: 2.6ms | Allocations: 5280)
+
+
+Started GET "/library_books/37" for ::1 at 2022-09-13 09:46:50 -0300
+[ActiveJob] [Turbo::Streams::ActionBroadcastJob] [a3efe0b8-b77d-476d-a218-0067165eaf20]   [1m[36mLibraryBook Load (0.2ms)[0m  [1m[34mSELECT "library_books".* FROM "library_books" WHERE "library_books"."id" = ? LIMIT ?[0m  [["id", 37], ["LIMIT", 1]]
+[ActiveJob] [Turbo::Streams::ActionBroadcastJob] [a3efe0b8-b77d-476d-a218-0067165eaf20] Performing Turbo::Streams::ActionBroadcastJob (Job ID: a3efe0b8-b77d-476d-a218-0067165eaf20) from Async(default) enqueued at 2022-09-13T12:46:50Z with arguments: "library_books", {:action=>:append, :target=>:library_books, :targets=>nil, :locals=>{:library_book=>#<GlobalID:0x00000001114382c8 @uri=#<URI::GID gid://hotwired/LibraryBook/37>>}, :partial=>"library_books/library_book"}
+[ActiveJob] [Turbo::Streams::ActionBroadcastJob] [a3efe0b8-b77d-476d-a218-0067165eaf20]   Rendered library_books/_library_book.html.erb (Duration: 16.6ms | Allocations: 349)
+[ActiveJob] [Turbo::Streams::ActionBroadcastJob] [a3efe0b8-b77d-476d-a218-0067165eaf20] [ActionCable] Broadcasting to library_books: "<turbo-stream action=\"append\" target=\"library_books\"><template><turbo-frame id=\"library_book_37\">\n  <div class=\"card card-body\" >\n    <div class=\"col\" style=\"color:red\" >\n      Ariel\n    </div>\n    <div class=\"col\" >\n      \n    </div>\n    <div class=\"col\" >\n      \n    <...
+[ActiveJob] [Turbo::Streams::ActionBroadcastJob] [a3efe0b8-b77d-476d-a218-0067165eaf20] Performed Turbo::Streams::ActionBroadcastJob (Job ID: a3efe0b8-b77d-476d-a218-0067165eaf20) from Async(default) in 26.47ms
+Turbo::StreamsChannel transmitting "<turbo-stream action=\"append\" target=\"library_books\"><template><turbo-frame id=\"library_book_37\">\n  <div class=\"card card-body\" >\n    <div class=\"col\" style=\"color:red\" >\n      Ariel\n    </div>\n    <div class=\"col\" >\n      \n    </div>\n    <div class=\"col\" >\n      \n    <... (via streamed from library_books)
+Processing by LibraryBooksController#show as TURBO_STREAM
+  Parameters: {"id"=>"37"}
+  [1m[36mLibraryBook Load (0.1ms)[0m  [1m[34mSELECT "library_books".* FROM "library_books" WHERE "library_books"."id" = ? LIMIT ?[0m  [["id", 37], ["LIMIT", 1]]
+  ↳ app/controllers/library_books_controller.rb:64:in `set_library_book'
+Redirected to http://localhost:3000/index
+Completed 302 Found in 3ms (ActiveRecord: 0.1ms | Allocations: 1358)
+
+
+Started GET "/index" for ::1 at 2022-09-13 09:46:50 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/index"):
+  
+Started GET "/" for ::1 at 2022-09-13 09:46:50 -0300
+Processing by LibraryBooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering library_books/index.html.erb within layouts/application
+  [1m[36mLibraryBook Load (0.1ms)[0m  [1m[34mSELECT "library_books".* FROM "library_books"[0m
+  ↳ app/views/library_books/index.html.erb:10
+  Rendered collection of library_books/_library_book.html.erb [3 times] (Duration: 0.3ms | Allocations: 243)
+  Rendered library_books/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1516)
+  Rendered library_books/_simple_form.html.erb (Duration: 6.8ms | Allocations: 8066)
+  Rendered layout layouts/application.html.erb (Duration: 11.9ms | Allocations: 11984)
+Completed 200 OK in 13ms (Views: 12.2ms | ActiveRecord: 0.1ms | Allocations: 12308)
+
+
+Finished "/cable/" [WebSocket] for ::1 at 2022-09-13 09:46:50 -0300
+Turbo::StreamsChannel stopped streaming from library_books
+Started GET "/cable" for ::1 at 2022-09-13 09:46:50 -0300
+Started GET "/cable/" [WebSocket] for ::1 at 2022-09-13 09:46:50 -0300
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Turbo::StreamsChannel is transmitting the subscription confirmation
+Turbo::StreamsChannel is streaming from library_books
+Finished "/cable/" [WebSocket] for ::1 at 2022-09-13 09:47:33 -0300
+Turbo::StreamsChannel stopped streaming from library_books
+Started GET "/cable" for ::1 at 2022-09-13 09:47:39 -0300
+Started GET "/cable/" [WebSocket] for ::1 at 2022-09-13 09:47:39 -0300
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Turbo::StreamsChannel is transmitting the subscription confirmation
+Turbo::StreamsChannel is streaming from library_books
+Started GET "/" for ::1 at 2022-09-13 09:47:41 -0300
+Processing by LibraryBooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering library_books/index.html.erb within layouts/application
+  [1m[36mLibraryBook Load (0.3ms)[0m  [1m[34mSELECT "library_books".* FROM "library_books"[0m
+  ↳ app/views/library_books/index.html.erb:10
+  Rendered collection of library_books/_library_book.html.erb [3 times] (Duration: 0.5ms | Allocations: 231)
+  Rendered library_books/index.html.erb within layouts/application (Duration: 4.2ms | Allocations: 1359)
+  Rendered library_books/_simple_form.html.erb (Duration: 10.0ms | Allocations: 7910)
+  Rendered layout layouts/application.html.erb (Duration: 19.4ms | Allocations: 11549)
+Completed 200 OK in 21ms (Views: 19.8ms | ActiveRecord: 0.3ms | Allocations: 11838)
+
+
+Finished "/cable/" [WebSocket] for ::1 at 2022-09-13 09:47:41 -0300
+Turbo::StreamsChannel stopped streaming from library_books
+Started GET "/cable" for ::1 at 2022-09-13 09:47:41 -0300
+Started GET "/cable/" [WebSocket] for ::1 at 2022-09-13 09:47:41 -0300
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Turbo::StreamsChannel is transmitting the subscription confirmation
+Turbo::StreamsChannel is streaming from library_books
+Finished "/cable/" [WebSocket] for ::1 at 2022-09-13 09:47:43 -0300
+Turbo::StreamsChannel stopped streaming from library_books
